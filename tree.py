@@ -1,5 +1,5 @@
 from node import Node
-
+import unittest
 
 class Tree:
     """ Tree class for binary tree """
@@ -62,27 +62,85 @@ class Tree:
             return self._find(data, node.right)
 
     def deleteTree(self):
-        # TODO 1
+        """Method for delete tree
+
+        Args:
+            None
+        Returns:
+            None
+        """
         self.root = None
 
     def printTree(self):
-        # TODO 1
+        """Method for print tree
+        
+        Args:
+            None
+        Returns:
+            None
+        """
         if self.root is not None:
             self._printInorderTree(self.root)
 
     def _printInorderTree(self, node):
-        # TODO 1
+        """Method for print tree in order
+        
+        Args:
+            node (Node): node to start print
+        Returns:
+            None
+        """
         if node is not None:
             self._printInorderTree(node.left)
             print(str(node.data) + ' ')
             self._printInorderTree(node.right)
 
     def _printPreorderTree(self, node):
-        # TODO 2
-        pass
+        """Method for print tree pre order
+        
+        Args:
+            node (Node): node to start print
+        Returns:
+            None
+        """
+        if node is not None:
+            print(str(node.data) + ' ')
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
 
     def _printPostorderTree(self, node):
-        # TODO 2
-        pass
+        """Method for print tree post order
+
+        Args:
+            node (Node): node to start print
+        Returns:
+            None
+        """
+        if node is not None:
+            self._printPostorderTree(node.left)
+            self._printPostorderTree(node.right)
+            print(str(node.data) + ' ')
+
+
+class TestFind(unittest.TestCase):
+    def setUp(self):
+        self.tree = Tree()
+        self.tree.add(3)
+        self.tree.add(4)
+        self.tree.add(0)
+        self.tree.add(8)
+        self.tree.add(2)
+
+    def test_find(self):
+        self.assertEqual(self.tree.find(3).data, 3)
+        self.assertEqual(self.tree.find(4).data, 4)
+        self.assertEqual(self.tree.find(0).data, 0)
+        self.assertEqual(self.tree.find(8).data, 8)
+        self.assertEqual(self.tree.find(2).data, 2)
+
+    def test_not_find(self):
+        self.assertEqual(self.tree.find(5), None)
+        self.assertEqual(self.tree.find(9), None)
+        self.assertEqual(self.tree.find(-1), None)
 
 

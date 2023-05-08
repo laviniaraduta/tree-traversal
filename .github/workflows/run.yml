@@ -16,4 +16,4 @@ jobs:
       - name: 🚀 Run
         shell: bash
         run: |
-          pytest main.py
+          pytest tree.py
